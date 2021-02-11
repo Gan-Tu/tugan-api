@@ -1,0 +1,36 @@
+{
+  "name": "Personal API",
+  "version": "0.1.0",
+  "description": "A personal API endpoint for useful tasks by Gan Tu.",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Michael-Tu/tugan-api.git"
+  },
+  "author": "Gan Tu",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Michael-Tu/tugan-api/issues"
+  },
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "bump-version": "npm version minor -m 'bump version to %s'",
+    "bump-version-major": "npm version major -m 'bump version to %s'",
+    "deploy": "echo 'no release setup yet'",
+    "release": "npm run bump-version && npm run deploy",
+    "major-release": "npm run bump-version-major && npm run deploy",
+    "test": "echo 'no tests yet'"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-rate-limit": "^5.2.5",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.7",
+    "pug": "2.0.0-beta11"
+  }
+}
