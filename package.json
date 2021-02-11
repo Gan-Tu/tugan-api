@@ -1,5 +1,5 @@
 {
-  "name": "Personal API",
+  "name": "tugan-api-service",
   "version": "0.1.0",
   "description": "A personal API endpoint for useful tasks by Gan Tu.",
   "private": true,
