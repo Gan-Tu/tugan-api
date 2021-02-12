@@ -1,7 +1,6 @@
 var { authenticator } = require("otplib");
 
-// TODO(tugan): make this an environment variable
-var SECRET = "DQ7C6RTLKZUD6E2S";
+var SECRET = process.env.SECRET_2FA || authenticator.generateSecret();
 const ISSUER = "api.tugan.app OTP/2FA service";
 
 function generateToken() {
