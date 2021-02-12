@@ -31,7 +31,21 @@ function validateSendSMSBody(req, res, next) {
       )
     );
   }
-  next();
+  lookupIntNumber(req.body.to_number, (err, info) => {
+    if (err) {
+      next(err);
+    } else if (!info.valid) {
+      next(
+        createError(
+          404,
+          "'to_number' either does not exist, or is not a valid number in " +
+            `E.164 format: ${req.body.to_number}`
+        )
+      );
+    } else {
+      next();
+    }
+  });
 }
 
 function lookupIntNumber(number, callback) {
