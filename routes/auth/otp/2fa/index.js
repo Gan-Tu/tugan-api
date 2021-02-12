@@ -12,6 +12,7 @@ router.get("/", function (req, res, next) {
   res.render("api-landing", {
     title: "API Endpoint: OTP/2FA Authentication",
     name: "Two Factor Authentication",
+    endpoints: ["GET /", "GET /setup", "GET /generate", "GET /verify"],
   });
 });
 

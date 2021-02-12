@@ -7,6 +7,7 @@ router.get("/", function (req, res, next) {
   res.render("api-landing", {
     title: "API Endpoint: Authentication",
     name: "Authentication",
+    endpoints: ["GET /", "GET /otp"],
   });
 });
 
