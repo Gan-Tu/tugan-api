@@ -34,6 +34,20 @@ function validateSendSMSBody(req, res, next) {
   next();
 }
 
+function lookupIntNumber(number, callback) {
+  twilioClient.lookups.v1
+    .phoneNumbers(number)
+    .fetch()
+    .then((metadata) => callback(null, { valid: true, metadata }))
+    .catch((err) => {
+      if (err && err.status === 404) {
+        callback(null, { valid: false, metadata: null });
+      } else {
+        callback(err);
+      }
+    });
+}
+
 function sendSMS(to_number, message, callback) {
   twilioClient.messages
     .create({
@@ -45,4 +59,4 @@ function sendSMS(to_number, message, callback) {
     .catch((err) => callback(err));
 }
 
-module.exports = { sendSMS, validateSendSMSBody };
+module.exports = { sendSMS, validateSendSMSBody, lookupIntNumber };
