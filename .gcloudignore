@@ -13,5 +13,8 @@
 .git
 .gitignore
 
+# dot env
+.env
+
 # Node.js dependencies:
 node_modules/
