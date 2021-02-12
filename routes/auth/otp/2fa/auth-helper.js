@@ -1,14 +1,13 @@
 var { authenticator } = require("otplib");
 
-var SECRET = process.env.SECRET_2FA || authenticator.generateSecret();
-const ISSUER = "api.tugan.app OTP/2FA service";
+const SECRET = process.env.SECRET_2FA || authenticator.generateSecret();
 
 function generateToken() {
   return authenticator.generate(SECRET);
 }
 
-function verifyToken(token) {
-  return authenticator.verify({ token, secret: SECRET });
+function verifyToken(token, secret = undefined) {
+  return authenticator.verify({ token, secret: secret || SECRET });
 }
 
 function timeUsed() {
@@ -19,15 +18,11 @@ function timeRemaining() {
   return authenticator.timeRemaining();
 }
 
-function resetSecret() {
-  SECRET = authenticator.generateSecret();
-}
-
 /** Generate a Google Authenticator compatible Key URL.
  *  https://github.com/google/google-authenticator/wiki/Key-Uri-Format
  */
-function getKeyUrl(accountName) {
-  return authenticator.keyuri(accountName, ISSUER, SECRET);
+function getKeyUrl(accountName, issuer, secret = undefined) {
+  return authenticator.keyuri(accountName, issuer, secret || SECRET);
 }
 
 module.exports = {
@@ -35,6 +30,5 @@ module.exports = {
   verifyToken,
   timeUsed,
   timeRemaining,
-  resetSecret,
   getKeyUrl,
 };

@@ -14,7 +14,8 @@ router.get("/generate", function (req, res, next) {
   if (!req.query || !req.query.userId || !req.query.userId.length === 0) {
     return next(createError(400, "Must provide a userId in query string"));
   }
-  let keyUrl = getKeyUrl(req.query.userId);
+  let issuer = req.query.issuer || "api.tugan.app OTP/2FA service";
+  let keyUrl = getKeyUrl(req.query.userId, issuer, req.query.secret);
   if (req.query.showKeyUrlOnly) {
     return res.json({ url: keyUrl });
   } else {
@@ -30,7 +31,7 @@ router.get("/verify", function (req, res, next) {
   if (!req.query || !req.query.token || !req.query.token.length === 0) {
     return next(createError(400, "Must provide a token in query string"));
   }
-  res.json({ valid: verifyToken(req.query.token) });
+  res.json({ valid: verifyToken(req.query.token, req.query.secret) });
 });
 
 module.exports = router;
