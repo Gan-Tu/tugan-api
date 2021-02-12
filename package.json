@@ -17,7 +17,7 @@
     "dev": "nodemon ./bin/www",
     "bump-version": "npm version minor -m 'bump version to %s'",
     "bump-version-major": "npm version major -m 'bump version to %s'",
-    "deploy": "echo 'no release setup yet'",
+    "deploy": "gcloud app deploy --project tugan-api-service-v2",
     "release": "npm run bump-version && npm run deploy",
     "major-release": "npm run bump-version-major && npm run deploy",
     "test": "echo 'no tests yet'"
