@@ -6,7 +6,7 @@ var otpRouter = require("./otp");
 router.get("/", function (req, res, next) {
   res.render("api-landing", {
     title: "API Endpoint: Authentication",
-    endpoint: "Authentication",
+    name: "Authentication",
   });
 });
 

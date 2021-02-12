@@ -6,7 +6,7 @@ var twoFactorRouter = require("./2fa");
 router.get("/", function (req, res, next) {
   res.render("api-landing", {
     title: "API Endpoint: OTP Authentication",
-    endpoint: "One Time Password Authentication",
+    name: "One Time Password Authentication",
   });
 });
 
