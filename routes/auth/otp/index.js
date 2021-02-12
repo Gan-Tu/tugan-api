@@ -1,15 +1,15 @@
 var express = require("express");
 var router = express.Router();
 
-var otpRouter = require("./otp");
+var twoFactorRouter = require("./2fa");
 
 router.get("/", function (req, res, next) {
   res.render("api-landing", {
-    title: "API Endpoint: Authentication",
-    endpoint: "Authentication",
+    title: "API Endpoint: OTP Authentication",
+    endpoint: "One Time Password Authentication",
   });
 });
 
-router.use("/otp", otpRouter);
+router.use("/2fa", twoFactorRouter);
 
 module.exports = router;

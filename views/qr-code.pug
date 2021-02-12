@@ -1,0 +1,16 @@
+extends layout
+
+
+block content
+  - const GOOGLE_QR_CODE_CHART_API = "http://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=";
+  - const QR_CODE_IMAGE_URL = GOOGLE_QR_CODE_CHART_API + data;
+  body(style="text-align: center")
+    h1 
+      | Your QR Code for 
+      u #{purpose}
+    div
+      p   Please scan the QR code below using an 2FA authenticator app like 
+        | Google Authenticator.
+      img(src=QR_CODE_IMAGE_URL alt=QR_CODE_IMAGE_URL)
+    p 
+      b #{description}
