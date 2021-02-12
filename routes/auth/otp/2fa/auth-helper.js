@@ -2,8 +2,8 @@ var { authenticator } = require("otplib");
 
 const SECRET = process.env.SECRET_2FA || authenticator.generateSecret();
 
-function generateToken() {
-  return authenticator.generate(SECRET);
+function generateToken(secret = undefined) {
+  return authenticator.generate(secret || SECRET);
 }
 
 function verifyToken(token, secret = undefined) {
@@ -14,7 +14,7 @@ function timeUsed() {
   return authenticator.timeUsed();
 }
 
-function timeRemaining() {
+function getTimeRemaining() {
   return authenticator.timeRemaining();
 }
 
@@ -29,6 +29,6 @@ module.exports = {
   generateToken,
   verifyToken,
   timeUsed,
-  timeRemaining,
+  getTimeRemaining,
   getKeyUrl,
 };

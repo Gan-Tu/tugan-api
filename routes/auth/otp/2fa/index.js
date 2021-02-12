@@ -1,7 +1,12 @@
 var createError = require("http-errors");
 var express = require("express");
 var router = express.Router();
-var { getKeyUrl, verifyToken } = require("./auth-helper");
+var {
+  getKeyUrl,
+  verifyToken,
+  generateToken,
+  getTimeRemaining,
+} = require("./auth-helper");
 
 router.get("/", function (req, res, next) {
   res.render("api-landing", {
@@ -10,7 +15,7 @@ router.get("/", function (req, res, next) {
   });
 });
 
-router.get("/generate", function (req, res, next) {
+router.get("/setup", function (req, res, next) {
   if (!req.query || !req.query.userId || !req.query.userId.length === 0) {
     return next(createError(400, "Must provide a userId in query string"));
   }
@@ -25,6 +30,13 @@ router.get("/generate", function (req, res, next) {
       data: encodeURIComponent(keyUrl),
     });
   }
+});
+
+router.get("/generate", function (req, res, next) {
+  res.json({
+    token: generateToken(req.query.secret),
+    timeRemaining: getTimeRemaining(),
+  });
 });
 
 router.get("/verify", function (req, res, next) {
