@@ -1,7 +1,7 @@
 var createError = require("http-errors");
 var express = require("express");
 var router = express.Router();
-var { sendSMS, validateSendSMSBody, lookupIntNumber } = require("./sms-helper");
+var { sendSMS, validateSendSMSBody, lookupIntNumber } = require("./sms-utils");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
