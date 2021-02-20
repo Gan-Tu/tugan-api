@@ -21,9 +21,18 @@ function validateMailParams(options) {
     return createError(400, "a non-empty 'subject' param is required");
   } else if (!hasValue(options.text) && !hasValue(options.html)) {
     return createError(400, "a non-empty 'text' or 'html' param is required");
-  } else if (hasValue(options.from_email)) {
-    if (!isValidEmail(options.from_email)) {
-      return createError(400, "a valid 'from_email' param is required");
+  }
+  const OPTIONAL_EMAIL_FIELDS = [
+    "from_email", 
+    "cc_email", 
+    "bcc_email", 
+    "reply_to_email"
+  ];
+  for (let field in OPTIONAL_EMAIL_FIELDS) {
+    if (hasValue(options[field])) {
+      if (!isValidEmail(options[field])) {
+        return createError(400, `a valid email is required for '${field}'`);
+      }
     }
   }
 }
@@ -36,7 +45,13 @@ function sendMail(options, callback) {
   sendgrid
     .send({
       to: options.to_email,
-      from: options.from_email || "no-reply@tugan.dev",
+      from: {
+        email: options.from_email || "no-reply@tugan.dev",
+        name: options.from_name || "Gan Tu"
+      },
+      cc: options.cc_email,
+      bcc: options.bcc_email,
+      replyTo: options.reply_to_email,
       subject: options.subject,
       text: options.text || options.html,
       html: options.html || options.text,
