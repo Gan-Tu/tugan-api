@@ -19,8 +19,8 @@ function validateMailParams(options) {
     return createError(400, "a valid 'to_email' param is required");
   } else if (!hasValue(options.subject)) {
     return createError(400, "a non-empty 'subject' param is required");
-  } else if (!hasValue(options.text)) {
-    return createError(400, "a non-empty 'text' param is required");
+  } else if (!hasValue(options.text) && !hasValue(options.html)) {
+    return createError(400, "a non-empty 'text' or 'html' param is required");
   } else if (hasValue(options.from_email)) {
     if (!isValidEmail(options.from_email)) {
       return createError(400, "a valid 'from_email' param is required");
@@ -38,7 +38,7 @@ function sendMail(options, callback) {
       to: options.to_email,
       from: options.from_email || "no-reply@tugan.dev",
       subject: options.subject,
-      text: options.text,
+      text: options.text || options.html,
       html: options.html || options.text,
     })
     .then(() => {

@@ -19,7 +19,7 @@ router.post("/send", function (req, res, next) {
       from_email: req.body.from_email,
       subject: req.body.subject,
       text: req.body.text,
-      htm: req.body.html,
+      html: req.body.html,
     },
     (err) => {
       if (err) {
