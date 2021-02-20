@@ -69,7 +69,7 @@ function sendSMS(to_number, message, callback) {
       from: twilioFromPhoneNumber,
       body: message,
     })
-    .then((message) => callback(null, message.sid))
+    .then((msg) => callback(null, msg.sid))
     .catch((err) => callback(err));
 }
 
