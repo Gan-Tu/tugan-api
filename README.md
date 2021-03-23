@@ -1,7 +1,7 @@
 # Personal API
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Build Status](https://travis-ci.com/Michael-Tu/tugan-api.svg?branch=main)](https://travis-ci.com/Michael-Tu/tugan-api)
+[![Build Status](https://travis-ci.com/Gan-Tu/tugan-api.svg?branch=main)](https://travis-ci.com/Gan-Tu/tugan-api)
 
 An API endpoint for api.tugan.app
 
