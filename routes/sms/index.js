@@ -14,8 +14,8 @@ router.get("/", function (req, res, next) {
 
 router.get("/send", function (req, res, next) {
   res.json({
-    msg: "This endpoint only alllows POST method",
-    required_fields: ["to_number", "message in international E.164 format"],
+    msg: "This endpoint only allows POST method",
+    required_fields: ["to_number in international E.164 format", "message"],
   });
 });
 
